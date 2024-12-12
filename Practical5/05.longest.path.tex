@@ -1,0 +1,65 @@
+\documentclass{article}
+\usepackage{graphicx}
+
+\title{Longest Path Using MapReduce in C++}
+\author{Trinh Duc Anh}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+In this practical work, we implement the **Longest Path** problem using a simple custom MapReduce framework in C++. The task is to find the longest file path(s) from a list of file paths in a distributed system. This task is a toy example of a typical MapReduce problem.
+
+\section{Why I Chose This Implementation}
+While there are established MapReduce frameworks like Hadoop and Apache Spark, implementing the problem in C++ using a custom framework allows for a deeper understanding of how MapReduce works and gives more control over performance and resource usage. C++ is a good choice for performance-sensitive tasks like this.
+
+\section{How the Mapper and Reducer Work}
+\subsection{Mapper}
+The Mapper reads each file path, counts the number of directories in the path (i.e., the number of slashes `/`), and produces key-value pairs where:
+\begin{itemize}
+    \item \textbf{Key}: The number of directories in the path.
+    \item \textbf{Value}: The full file path.
+\end{itemize}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.6\textwidth]{mapper_design.png}
+\caption{Mapper Design}
+\end{figure}
+
+\subsection{Reducer}
+The Reducer receives the key-value pairs, aggregates the results, and finds the longest file path by comparing the lengths of paths. It outputs the path(s) with the maximum length.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.6\textwidth]{reducer_design.png}
+\caption{Reducer Design}
+\end{figure}
+
+\section{System Organization}
+The system consists of two main components:
+\begin{itemize}
+    \item \textbf{Mapper:} Processes each file path and produces key-value pairs.
+    \item \textbf{Reducer:} Finds the longest file path by comparing the length of each path.
+\end{itemize}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.6\textwidth]{system_organization.png}
+\caption{System Organization}
+\end{figure}
+
+\section{Implementation Details}
+The Mapper splits the file path by slashes `/` to count the number of directories in each path. The Reducer then aggregates these counts and identifies the longest path.
+
+\begin{verbatim}
+    // Mapper code snippet here
+    // Reducer code snippet here
+\end{verbatim}
+
+\section{Conclusion}
+This project demonstrates a custom implementation of the Longest Path problem using the MapReduce paradigm in C++. The system processes a list of file paths, counts the directories, and finds the longest file path efficiently. This approach illustrates the power of MapReduce for parallel processing in real-world scenarios.
+
+\end{document}

@@ -1,0 +1,61 @@
+\documentclass{article}
+\usepackage{graphicx}
+
+\title{Word Count Using MapReduce in C++}
+\author{Trinh Duc Anh}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\section{Introduction}
+In this practical work, we implement the Word Count algorithm using a simple custom MapReduce framework in C++. MapReduce is a popular parallel computing paradigm used to process large datasets. Here, we simulate the process of word counting in a text file using a custom implementation of the Map and Reduce phases.
+
+\section{Why I Chose This Implementation}
+While there are existing MapReduce frameworks such as Hadoop and Apache Spark, implementing a custom framework in C++ allows for more control over the process and a deeper understanding of how the MapReduce paradigm works. Additionally, C++ provides high performance and fine-grained memory management, making it suitable for this example.
+
+\section{How the Mapper and Reducer Work}
+\subsection{Mapper}
+The Mapper reads the input text line by line, tokenizes each line into words, and produces a key-value pair where the key is the word, and the value is the count (which is `1` for each word).
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.6\textwidth]{mapper_design.png}
+\caption{Mapper Design}
+\end{figure}
+
+\subsection{Reducer}
+The Reducer aggregates the intermediate results produced by the Mapper. It takes the key-value pairs, sums the counts for each word, and produces the final word count.
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.6\textwidth]{reducer_design.png}
+\caption{Reducer Design}
+\end{figure}
+
+\section{System Organization}
+The system consists of two main components:
+\begin{itemize}
+    \item \textbf{Mapper:} Reads the input and produces key-value pairs.
+    \item \textbf{Reducer:} Aggregates the counts and outputs the results.
+\end{itemize}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.6\textwidth]{system_organization.png}
+\caption{System Organization}
+\end{figure}
+
+\section{Implementation Details}
+The Mapper processes each line of the input file, splitting it into words, converting them to lowercase, and then creating key-value pairs. The Reducer aggregates the counts for each word and outputs the final count.
+
+\begin{verbatim}
+    // Mapper code snippet here
+    // Reducer code snippet here
+\end{verbatim}
+
+\section{Conclusion}
+This project demonstrates a custom implementation of the Word Count problem using the MapReduce paradigm in C++. The system processes input text, maps words to key-value pairs, and reduces them to produce word counts. This implementation provides a simple and efficient way to perform word count using parallel processing principles.
+
+\end{document}
